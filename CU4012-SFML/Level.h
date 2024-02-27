@@ -6,6 +6,7 @@
 #include "Framework/GameState.h"
 #include <string>
 #include <iostream>
+#include "Player.h"
 
 
 class Level : public BaseLevel{
@@ -19,5 +20,13 @@ public:
 
 private:
 	// Default variables for level class.
+
+	//Player 
+	Player Player; 
+
+	sf::Texture PlayerTex; 
+
+	//AABB 
+	
 
 };

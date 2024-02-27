@@ -10,18 +10,18 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	level1 = new Level(window, input, gameState);
 
 
-	font.loadFromFile("font/ZOMBIES REBORN.ttf");
-	title.loadFromFile("font/BloodBlocks Project.ttf");
+	font.loadFromFile("font/PixelTex.TTF");
+	title.loadFromFile("font/PixelTex.TTF");
 
 
 	menu_texture.loadFromFile("gfx/menu.png");
 	menu_sprite.setTexture(menu_texture);
-	menu_sprite.setScale(0.35, 0.32);
+	menu_sprite.setScale(12, 12);
 
 
 	Title.setFont(title);
 	Title.setFillColor(sf::Color::Magenta);
-	Title.setString("My Game");
+	Title.setString("Game");
 	Title.setOutlineColor(sf::Color::Black);
 	Title.setCharacterSize(70);
 	Title.setPosition(500, 50);
