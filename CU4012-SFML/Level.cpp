@@ -1,4 +1,6 @@
 #include "Level.h"
+#include "Player.h"
+
 
 Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
 {
@@ -7,6 +9,10 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
 	gameState = gs;
 
 	// initialise game objects
+
+	PlayerTex.loadFromFile("gfx/Player.png");
+
+	// PlayerTex.setTexture(&PlayerTex); 
 
 }
 
