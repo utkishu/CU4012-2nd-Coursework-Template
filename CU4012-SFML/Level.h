@@ -7,6 +7,8 @@
 #include <string>
 #include <iostream>
 #include "Player.h"
+#include "Background.h"
+#include "Level.h"
 
 
 class Level : public BaseLevel{
@@ -28,5 +30,10 @@ private:
 
 	//AABB 
 	
+
+	//Background 
+
+	Background bg; 
+	sf::Texture backgroundTex; 
 
 };

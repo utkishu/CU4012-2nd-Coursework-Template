@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "Player.h"
 
 Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 {

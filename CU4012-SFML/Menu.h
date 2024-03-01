@@ -40,5 +40,8 @@ public:
 
 	sf::Sprite menu_sprite;
 	sf::Texture menu_texture;
+
+
+
 };
 
