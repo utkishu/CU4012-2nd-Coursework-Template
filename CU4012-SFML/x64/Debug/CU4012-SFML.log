@@ -1,6 +1,8 @@
 ﻿  Background.cpp
-C:\Users\higta\OneDrive\Desktop\Games Programming work\Github\CU4012-2nd-Coursework-Game\CU4012-SFML\Level.h(36,13): error C3646: 'bg': unknown override specifier
-C:\Users\higta\OneDrive\Desktop\Games Programming work\Github\CU4012-2nd-Coursework-Game\CU4012-SFML\Level.h(36,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-  Level.cpp
-  Squares.cpp
+  Player.cpp
+C:\Users\fac0298\Documents\GitHub\CU4012-2nd-Coursework-Game\CU4012-SFML\Player.cpp(31,15): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\fac0298\Documents\GitHub\CU4012-2nd-Coursework-Game\CU4012-SFML\Player.cpp(37,14): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\fac0298\Documents\GitHub\CU4012-2nd-Coursework-Game\CU4012-SFML\Player.cpp(43,15): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\fac0298\Documents\GitHub\CU4012-2nd-Coursework-Game\CU4012-SFML\Player.cpp(49,14): warning C4305: 'argument': truncation from 'double' to 'float'
   Generating Code...
+  CU4012-SFML.vcxproj -> C:\Users\fac0298\Documents\GitHub\CU4012-2nd-Coursework-Game\x64\Debug\CU4012-SFML.exe

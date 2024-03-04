@@ -1,5 +1,4 @@
 #include "Background.h"
-#include "Level.h"
 
 Background::Background()
 {
@@ -17,7 +16,7 @@ Background::~Background()
 
 void Background::handleInput(float dt)
 {
-	if (input->isKeyDown(sf::Keyboard::A))
+	/*if (input->isKeyDown(sf::Keyboard::A))
 
 	{
 		view.move(-100, 0);
@@ -32,8 +31,6 @@ void Background::handleInput(float dt)
 		window->setView(view);
 
 
-	}
-	
-
+	}*/
 
 }

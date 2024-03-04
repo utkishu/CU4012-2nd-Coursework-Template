@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Squares.h"
 #include "Background.h" 
+#include "Enemy.h"
 
 
 Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
@@ -23,15 +24,24 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
 	Player.setVelocity(250, 250); 
 	Player.setInput(input);
 
+	
+
 	// Background 
 
 	backgroundTex.loadFromFile("gfx/Background.png"); 
 
 	bg.setTexture(&backgroundTex); 
-	bg.setSize(sf::Vector2f(698, 478)); 
+	bg.setSize(sf::Vector2f(11038, 675)); 
 	bg.setInput(input); 
 	bg.setWindow(window); 
-	
+
+
+	//Enemy 
+	e1.loadFromFile("gfx/Enemy.png");
+
+	Enemy1.setTexture(&e1);
+	Enemy1.setSize(sf::Vector2f(100, 100)); 
+	Enemy1.setPosition(500, 500); 
 }
 
 Level::~Level()
@@ -62,6 +72,9 @@ void Level::render()
 	window->draw(bg);
 	//Player rendered
 	window->draw(Player);
+	//Enemy 1
+	window->draw(Enemy1);
+
 
 	endDraw();
 }

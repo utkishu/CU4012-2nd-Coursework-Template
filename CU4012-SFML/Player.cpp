@@ -58,4 +58,6 @@ void Player::CollisionResponse(GameObject* collider)
 {
 	velocity.x = -velocity.x; 
 
+	collider->setVelocity(-collider->getVelocity());
+
 }

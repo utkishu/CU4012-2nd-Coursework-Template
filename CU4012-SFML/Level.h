@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Background.h"
 #include "Level.h"
+#include "Enemy.h"
 
 
 class Level : public BaseLevel{
@@ -36,4 +37,13 @@ private:
 	Background bg; 
 	sf::Texture backgroundTex; 
 
+	//Enemy 
+	Enemy Enemy1; 
+	Enemy Enemy2; 
+
+
+	sf::Texture e1; 
+	sf::Texture e2;
+
+	// sf::Vector2f move, move1; 
 };
