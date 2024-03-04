@@ -4,9 +4,15 @@
 #include "Framework/BaseLevel.h"
 #include "Framework/Input.h"
 #include "Framework/GameState.h"
+#include "Framework/Collision.h"
 #include <string>
 #include <iostream>
-
+#include "Player.h"
+#include "Background.h"
+#include "Terrain.h"
+#include "Enemy.h"
+#include "Blunderbuss.h"
+#include "Bullet.h"
 
 class Level : public BaseLevel{
 public:
@@ -20,4 +26,21 @@ public:
 private:
 	// Default variables for level class.
 
+	Background bg;
+	sf::Texture BackgroundTex;
+
+	Player PlayerSprite;
+	sf::Texture PlayerTex;
+
+	Terrain ter1;
+	sf::Texture TerrainBackground;
+
+	Enemy Bat;
+	sf::Texture BatSprite;
+
+	Blunderbuss BBuss;
+	sf::Texture BlunderB;
+
+	Bullet bullets;
+	sf::Texture bulletTexture;
 };

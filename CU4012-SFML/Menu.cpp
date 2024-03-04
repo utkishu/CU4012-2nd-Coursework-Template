@@ -10,33 +10,35 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	level1 = new Level(window, input, gameState);
 
 
-	font.loadFromFile("font/ZOMBIES REBORN.ttf");
-	title.loadFromFile("font/BloodBlocks Project.ttf");
+	font.loadFromFile("font/Mogra-Regular.ttf");
+	title.loadFromFile("font/BungeeInline-Regular.ttf");
 
 
-	menu_texture.loadFromFile("gfx/menu.png");
+	menu_texture.loadFromFile("gfx/BackgroundMineImage.jpg");
 	menu_sprite.setTexture(menu_texture);
-	menu_sprite.setScale(0.35, 0.32);
+	menu_sprite.setScale(4.50, 3.75);
+	
+	
 
 
 	Title.setFont(title);
-	Title.setFillColor(sf::Color::Magenta);
-	Title.setString("My Game");
+	Title.setFillColor(sf::Color::Green);
+	Title.setString("Under-mined");
 	Title.setOutlineColor(sf::Color::Black);
 	Title.setCharacterSize(70);
-	Title.setPosition(500, 50);
+	Title.setPosition(850, 50);
 
 
 	menu[0].setFont(font);
-	menu[0].setFillColor(sf::Color::Red);
+	menu[0].setFillColor(sf::Color::Green);
 	menu[0].setString("Play");
-	menu[0].setPosition(sf::Vector2f(600,120));
+	menu[0].setPosition(sf::Vector2f(1080,250));
 
 
 	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
 	menu[1].setString("Exit");
-	menu[1].setPosition(sf::Vector2f(600,150));
+	menu[1].setPosition(sf::Vector2f(1080,300));
 
 
 	selectedItem = 0;
@@ -59,7 +61,7 @@ void Menu::MoveUp()
 	{
 		menu[selectedItem].setFillColor(sf::Color::White);
 		selectedItem--;
-		menu[selectedItem].setFillColor(sf::Color::Red);
+		menu[selectedItem].setFillColor(sf::Color::Green);
 	}
 }
 void Menu::MoveDown()
@@ -68,7 +70,7 @@ void Menu::MoveDown()
 	{
 		menu[selectedItem].setFillColor(sf::Color::White);
 		selectedItem++;
-		menu[selectedItem].setFillColor(sf::Color::Red);
+		menu[selectedItem].setFillColor(sf::Color::Green);
 	}
 
 }
