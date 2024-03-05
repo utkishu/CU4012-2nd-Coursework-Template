@@ -2,10 +2,16 @@
 
 Player::Player()
 {
+	
 }
 
 Player::~Player()
 {
+}
+
+void Player::update(float dt)
+{
+	move(sf::Vector2f(0, 1.1));
 }
 
 void Player::handleInput(float dt)

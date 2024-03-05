@@ -4,6 +4,7 @@
 #pragma once
 #include "GameObject.h"
 
+
 // Static class provide collision detection functions.
 class Collision
 {
@@ -15,4 +16,5 @@ public:
 	// Check bounding circle collision. Returns true if collision occurs.
 	static bool checkBoundingCircle(GameObject* sp1, GameObject* sp2);
 
+	bool intersects(const sf::RectangleShape r, const sf::RectangleShape p);
 };

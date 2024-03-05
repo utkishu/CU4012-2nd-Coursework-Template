@@ -13,6 +13,7 @@
 #include "Enemy.h"
 #include "Blunderbuss.h"
 #include "Bullet.h"
+#include "Spikes.h"
 
 class Level : public BaseLevel{
 public:
@@ -32,7 +33,7 @@ private:
 	Player PlayerSprite;
 	sf::Texture PlayerTex;
 
-	Terrain ter1;
+	Terrain ter1[9];
 	sf::Texture TerrainBackground;
 
 	Enemy Bat;
@@ -43,4 +44,9 @@ private:
 
 	Bullet bullets;
 	sf::Texture bulletTexture;
+
+	sf::RectangleShape healthbar;
+
+	Spikes spikes[5];
+	sf::Texture SpikesTex;
 };

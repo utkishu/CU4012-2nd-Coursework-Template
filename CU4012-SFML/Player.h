@@ -8,6 +8,9 @@ class Player :
         Player();
         ~Player();
 
+        void update(float dt);
+        
+
 
         void handleInput(float dt);
 
