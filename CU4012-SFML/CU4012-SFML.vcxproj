@@ -135,6 +135,8 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Blunderbuss.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossLevel.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Framework\BaseLevel.cpp" />
@@ -142,6 +144,7 @@
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\GameState.cpp" />
     <ClCompile Include="Framework\Input.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -152,6 +155,8 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Blunderbuss.h" />
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossLevel.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Framework\BaseLevel.h" />
@@ -159,6 +164,7 @@
     <ClInclude Include="Framework\GameObject.h" />
     <ClInclude Include="Framework\GameState.h" />
     <ClInclude Include="Framework\Input.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />

@@ -61,10 +61,19 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
 	ter1[6].setSize(sf::Vector2f(300, 50));
 
 	ter1[7].setCollisionBox(sf::FloatRect(0, 0, 80, 40));
-	ter1[7].setPosition(280, 600);
+	ter1[7].setPosition(180, 700);
 	ter1[7].setTexture(&TerrainBackground);
-	ter1[7].setSize(sf::Vector2f(300, 50));
+	ter1[7].setSize(sf::Vector2f(250, 50));
 
+	ter1[8].setCollisionBox(sf::FloatRect(0, 0, 80, 40));
+	ter1[8].setPosition(0, 900);
+	ter1[8].setTexture(&TerrainBackground);
+	ter1[8].setSize(sf::Vector2f(700, 50));
+
+	ter1[9].setCollisionBox(sf::FloatRect(0, 0, 80, 40));
+	ter1[9].setPosition(850, 900);
+	ter1[9].setTexture(&TerrainBackground);
+	ter1[9].setSize(sf::Vector2f(1100, 50));
 
 	BatSprite.loadFromFile("gfx/BatLeft.png");
 	Bat.setTexture(&BatSprite);
@@ -90,12 +99,19 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
 
 	SpikesTex.loadFromFile("gfx/Spike.png");
 	spikes[0].setTexture(&SpikesTex);
+	spikes[0].setCollisionBox(sf::FloatRect(0, 0, 65, 40));
 	spikes[0].setPosition(400, 85);
 	spikes[0].setSize(sf::Vector2f(70, 50));
 
 	spikes[1].setTexture(&SpikesTex);
+	spikes[1].setCollisionBox(sf::FloatRect(0, 0, 180, 40));
 	spikes[1].setPosition(780, 460);
 	spikes[1].setSize(sf::Vector2f(200, 40));
+
+	spikes[2].setTexture(&SpikesTex);
+	spikes[2].setCollisionBox(sf::FloatRect(0, 0, 90, 40));
+	spikes[2].setPosition(600, 860);
+	spikes[2].setSize(sf::Vector2f(100, 40));
 
 }
 
@@ -153,6 +169,22 @@ void Level::update(float dt)
 	{
 		PlayerSprite.move(0.0f, -1.5f);
 	}
+	if (PlayerSprite.getGlobalBounds().intersects(ter1[6].getGlobalBounds()))
+	{
+		PlayerSprite.move(0.0f, -1.5f);
+	}
+	if (PlayerSprite.getGlobalBounds().intersects(ter1[7].getGlobalBounds()))
+	{
+		PlayerSprite.move(0.0f, -1.5f);
+	}
+	if (PlayerSprite.getGlobalBounds().intersects(ter1[8].getGlobalBounds()))
+	{
+		PlayerSprite.move(0.0f, -1.5f);
+	}
+	if (PlayerSprite.getGlobalBounds().intersects(ter1[9].getGlobalBounds()))
+	{
+		PlayerSprite.move(0.0f, -1.5f);
+	}
 }
 
 // Render level
@@ -169,8 +201,11 @@ void Level::render()
 	window->draw(ter1[5]);
 	window->draw(ter1[6]);
 	window->draw(ter1[7]);
+	window->draw(ter1[8]);
+	window->draw(ter1[9]);
 	window->draw(spikes[0]);
 	window->draw(spikes[1]);
+	window->draw(spikes[2]);
 	window->draw(healthbar);
 	window->draw(Bat);
 	window->draw(PlayerSprite);

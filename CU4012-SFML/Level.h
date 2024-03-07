@@ -15,6 +15,7 @@
 #include "Bullet.h"
 #include "Spikes.h"
 
+
 class Level : public BaseLevel{
 public:
 	Level(sf::RenderWindow* hwnd, Input* in, GameState* gs);
@@ -33,7 +34,7 @@ private:
 	Player PlayerSprite;
 	sf::Texture PlayerTex;
 
-	Terrain ter1[9];
+	Terrain ter1[10];
 	sf::Texture TerrainBackground;
 
 	Enemy Bat;
@@ -47,6 +48,8 @@ private:
 
 	sf::RectangleShape healthbar;
 
-	Spikes spikes[5];
+	Spikes spikes[3];
 	sf::Texture SpikesTex;
+
+	bool GameOver = false;
 };

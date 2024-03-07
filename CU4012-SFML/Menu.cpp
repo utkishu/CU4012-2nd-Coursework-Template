@@ -25,20 +25,20 @@ Menu::Menu(sf::RenderWindow* hwnd, Input* in, GameState* game)
 	Title.setFillColor(sf::Color::Green);
 	Title.setString("Under-mined");
 	Title.setOutlineColor(sf::Color::Black);
-	Title.setCharacterSize(70);
-	Title.setPosition(850, 50);
+	Title.setCharacterSize(150);
+	Title.setPosition(450, 100);
 
 
 	menu[0].setFont(font);
 	menu[0].setFillColor(sf::Color::Green);
 	menu[0].setString("Play");
-	menu[0].setPosition(sf::Vector2f(1080,250));
+	menu[0].setPosition(sf::Vector2f(1000,300));
 
 
 	menu[1].setFont(font);
 	menu[1].setFillColor(sf::Color::White);
 	menu[1].setString("Exit");
-	menu[1].setPosition(sf::Vector2f(1080,300));
+	menu[1].setPosition(sf::Vector2f(1000,400));
 
 
 	selectedItem = 0;
