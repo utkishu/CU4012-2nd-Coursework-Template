@@ -1,11 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "Framework/Input.h"
-#include "Framework/GameState.h"
-#include"Framework/Collision.h"
-#include <string>
-#include <iostream>
-#include "Level.h"
+
 #include "Menu.h"
 class GameOver 
     

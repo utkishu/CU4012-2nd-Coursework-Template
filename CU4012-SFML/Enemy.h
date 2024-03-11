@@ -8,6 +8,8 @@ public:
 
 	~Enemy();
 
-	void update(float dt, sf::Vector2f& movement);
+	void update(float dt, sf::Vector2f &movement);
+
+	void BoundaryCheck(sf::Vector2f& movement);
 };
 

@@ -66,10 +66,10 @@
     <ClCompile Include="GameOver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Boss.cpp">
+    <ClCompile Include="WinningScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BossLevel.cpp">
+    <ClCompile Include="PauseMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,10 +119,10 @@
     <ClInclude Include="GameOver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Boss.h">
+    <ClInclude Include="WinningScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BossLevel.h">
+    <ClInclude Include="PauseMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

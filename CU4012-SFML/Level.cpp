@@ -79,6 +79,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs)
 	Bat.setTexture(&BatSprite);
 	Bat.setSize(sf::Vector2f(70, 60));
 	Bat.setPosition(300, 30);
+	move = sf::Vector2f(100, 0);
 
 	BlunderB.loadFromFile("gfx/Blunderbuss.png");
 	BBuss.setTexture(&BlunderB);
@@ -185,6 +186,8 @@ void Level::update(float dt)
 	{
 		PlayerSprite.move(0.0f, -1.5f);
 	}
+
+	Bat.update(dt, move);
 }
 
 // Render level

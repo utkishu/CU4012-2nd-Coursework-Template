@@ -39,6 +39,8 @@ private:
 
 	Enemy Bat;
 	sf::Texture BatSprite;
+	
+	sf::Vector2f move;
 
 	Blunderbuss BBuss;
 	sf::Texture BlunderB;
