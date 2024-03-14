@@ -52,6 +52,23 @@ Menu::~Menu()
 void Menu::update(float dt)
 {
 	mouseOverAnyItem = false; // Reset this flag each frame
+	
+
+	// Update the position of the text
+	sf::Vector2u windowSize = window->getSize();
+
+
+	Title.setPosition(windowSize.x / 2 - Title.getGlobalBounds().width / 2, 50);
+
+
+	UIText[0].text.setPosition(sf::Vector2f(windowSize.x / 2 - UIText[0].text.getGlobalBounds().width / 2, 120));
+	UIText[0].setCollisionBox(sf::FloatRect(windowSize.x / 2 - UIText[0].text.getGlobalBounds().width / 2, 135, 35, 15));
+
+	UIText[1].text.setPosition(windowSize.x / 2 - UIText[1].text.getGlobalBounds().width / 2, 150);
+	UIText[1].setCollisionBox(sf::FloatRect(windowSize.x / 2 - UIText[1].text.getGlobalBounds().width / 2, 165, 35, 15));
+
+
+
 
 	// Update mouse position
 	MousePos.x = input->getMouseX();

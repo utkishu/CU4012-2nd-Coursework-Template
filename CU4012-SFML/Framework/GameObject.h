@@ -40,7 +40,7 @@ public:
 		collisionBox = sf::FloatRect(x, y, width, height);
 		setDebugCollisionBox(x, y, width, height);
 	};
-	
+	void setColor(sf::Color c) { collisionBoxDebug.setOutlineColor(c); }
 	void setCollisionBox(sf::Vector2f pos, sf::Vector2f size)
 	{
 		collisionBox = sf::FloatRect(pos.x, pos.y, size.x, size.y);
@@ -66,19 +66,26 @@ public:
 
 	void clearCollision() { collidingTag = ""; }
 
-
 	// Set the input component
 	void setInput(Input* in) { input = in; };
 	void setWindow(sf::RenderWindow* win) { window = win; };
 	
 
+	//Collision functions
+	void setTrigger(bool t) { isTrigger = t; }
+	bool getTrigger() { return isTrigger; }
+
+	void setTile(bool t) { isTile = t; }
+	bool getTile() { return isTile; }
+
+	void setStatic(bool s) { isStatic = s; }
+	bool getStatic() { return isStatic; }
 
 	// Physics functions
 	void UpdatePhysics(sf::Vector2f* gravity,float deltaTime);
 	float restitution = 1;
 
-	void setStatic(bool s) { isStatic = s; }
-	bool getStatic() { return isStatic; }
+	
 	void setMass(float m)
 	{
 		mass = m;
@@ -132,7 +139,8 @@ protected:
 	sf::RenderWindow* window;
 private:
 	bool isStatic;
-
+	bool isTrigger;
+	bool isTile;
 	// Physics properties
 	sf::Vector2f force;
 	sf::Vector2f acceleration;
@@ -151,7 +159,4 @@ private:
 
 	std::string tag;
 	std::string collidingTag;
-
-
-	
 };

@@ -1,45 +1,81 @@
 #include "TileManager.h"
-
+#include "Collision.h"
 
 TileManager::TileManager()
 {
     filePath = "TilesData.txt";
-
 }
 
 
 void TileManager::handleInput(float dt)
 {
-    // Add a new tile only if no tile is currently being edited
-    if (activeTileIndex == -1 && input->isLeftMouseDown()) {
-        input->setLeftMouse(Input::MouseState::UP);
-        sf::Vector2i mousePos = sf::Vector2i(input->getMouseX(), input->getMouseY());
+    sf::Vector2i pixelPos = sf::Vector2i(input->getMouseX(), input->getMouseY());
+    sf::Vector2f worldPos = window->mapPixelToCoords(pixelPos, window->getView());
 
-        auto newTile = std::make_unique<Tiles>();
-        newTile->setPosition(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-        world->AddGameObject(*newTile);
-        tiles.push_back(std::move(newTile));
-        activeTileIndex = tiles.size() - 1;
+    if (input->isLeftMouseDown()) {
+        bool tileClicked = false;
+        int clickedTileIndex = -1;
+
+        // Check if any tile is clicked
+        for (int i = 0; i < tiles.size(); ++i) {
+            if (Collision::checkBoundingBox(tiles[i]->getCollisionBox(), sf::Vector2i(worldPos))) {
+                tileClicked = true;
+                clickedTileIndex = i;
+                break;
+            }
+        }
+
+        if (tileClicked) {
+            // If we clicked on a tile while another one was being edited, stop editing the previous one
+            if (activeTileIndex != -1 && activeTileIndex != clickedTileIndex) {
+                tiles[activeTileIndex]->setEditing(false);
+            }
+            // Set the clicked tile as the new active tile
+            activeTileIndex = clickedTileIndex;
+            tiles[activeTileIndex]->setEditing(true);
+        }
+        else {
+            // If we clicked on empty space and no tile is currently selected, create a new tile
+            if (activeTileIndex == -1) {
+                auto newTile = std::make_unique<Tiles>();
+                newTile->setPosition(worldPos.x, worldPos.y);
+                world->AddGameObject(*newTile);
+                tiles.push_back(std::move(newTile));
+                activeTileIndex = tiles.size() - 1; // Select the newly added tile
+                tiles[activeTileIndex]->setEditing(true);
+            }
+            else {
+                // If we clicked on empty space, stop editing the current tile
+                tiles[activeTileIndex]->setEditing(false);
+                activeTileIndex = -1;
+            }
+        }
+        input->setLeftMouse(Input::MouseState::UP); // Mark the mouse click as handled
     }
 
-    // Forward input handling only to the active (editing) tile
-    if (activeTileIndex != -1)
-    {
+    // Handle input for the active tile
+    if (activeTileIndex != -1) {
         tiles[activeTileIndex]->setInput(input);
         tiles[activeTileIndex]->handleInput(dt);
-        // If editing is finished, reset activeTileIndex
-        if (!tiles[activeTileIndex]->isEditing())
-        {
+        // If editing is finished (the tile itself should be responsible for setting this)
+        if (!tiles[activeTileIndex]->isEditing()) {
             activeTileIndex = -1;
         }
     }
 
-    // Saving logic remains unchanged
-    if (input->isKeyDown(sf::Keyboard::LControl) && input->isKeyDown(sf::Keyboard::S)) {
-        input->setKeyUp(sf::Keyboard::LControl);
-        input->setKeyUp(sf::Keyboard::S);
-        std::cout << "Saving tiles\n";
-        saveTiles(tiles, filePath);
+    // Update the color of the tiles based on selection
+    for (int i = 0; i < tiles.size(); ++i) {
+        tiles[i]->setColor((i == activeTileIndex && tiles[i]->isEditing()) ? sf::Color::Green : sf::Color::Red);
+    }
+
+    // Delete the selected tile
+    if (input->isKeyDown(sf::Keyboard::Delete)) {
+        input->setKeyUp(sf::Keyboard::Delete);
+        if (activeTileIndex != -1) {
+            world->RemoveGameObject(*tiles[activeTileIndex]);
+            tiles.erase(tiles.begin() + activeTileIndex);
+            activeTileIndex = -1;
+        }
     }
 }
 

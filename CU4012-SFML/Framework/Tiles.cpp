@@ -3,7 +3,10 @@
 Tiles::Tiles()
 {
 	setSize(sf::Vector2f(50, 50));
+
+
 	setStatic(true);
+	setTile(true);
 	//setMass(50.f);
 	editing = true;
 }
@@ -16,12 +19,6 @@ void Tiles::update(float dt)
 
 void Tiles::handleInput(float dt)
 {
-	if (input->isKeyDown(sf::Keyboard::Return) && editing) {
-		editing = false;
-		std::cout << "Editing: " << editing << std::endl;
-
-	}
-
 
 	if(editing)
 	{
@@ -41,28 +38,34 @@ void Tiles::handleInput(float dt)
 			setPosition(getPosition().x, getPosition().y + moveSpeed * dt);
 		}
 
-
+		float resizeSpeed = 0.1f; // Speed of resizing	
 		//Resize the tile
 		if (input->isKeyDown(sf::Keyboard::J))
 		{
-			setSize(sf::Vector2f(getSize().x - 1, getSize().y));
+			setSize(sf::Vector2f(getSize().x - resizeSpeed, getSize().y));
 		}
 
 
 		if (input->isKeyDown(sf::Keyboard::L))
 		{
-			setSize(sf::Vector2f(getSize().x + 1, getSize().y));
+			setSize(sf::Vector2f(getSize().x + resizeSpeed, getSize().y));
 		}
 
 		if (input->isKeyDown(sf::Keyboard::I))
 		{
-			setSize(sf::Vector2f(getSize().x, getSize().y - 1));
+			setSize(sf::Vector2f(getSize().x, getSize().y - resizeSpeed));
 		}
 
 		if (input->isKeyDown(sf::Keyboard::K))
 		{
-			setSize(sf::Vector2f(getSize().x, getSize().y + 1));
+			setSize(sf::Vector2f(getSize().x, getSize().y + resizeSpeed));
 		}
 	}
+
+	//// Check to exit editing mode
+	//if (input->isKeyDown(sf::Keyboard::Return)) {
+	//	editing = false;
+	//	input->setKeyUp(sf::Keyboard::Return); // Acknowledge the key press to prevent sticking
+	//}
 
 }

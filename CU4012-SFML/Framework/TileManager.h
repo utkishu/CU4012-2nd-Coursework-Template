@@ -33,5 +33,7 @@ public:
     std::vector<std::unique_ptr<Tiles>>& getTiles();
 
     void setWorld(World* world) { this->world = world; }
+
+    std::string getFilePath() { return filePath; }
 };
 

@@ -20,8 +20,18 @@ public:
 	void handleInput(float dt) override;
 	void update(float dt) override;
 	void render();
+	void moveView(float dt);
 
+	void adjustViewToWindowSize(unsigned int width, unsigned int height);
 private:
+	
+	sf::View view;
+	
+	sf::Text TileEditorText;
+	sf::Font font;
+
+	bool editMode;
+
 	// Default variables for level class.
 	Player p1;
 	Enemy e1;
