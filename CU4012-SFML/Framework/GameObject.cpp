@@ -215,6 +215,10 @@ void GameObject::collisionResponse(GameObject* collider)
         // If the collider is neither static nor a tile, update the colliding tag
         collidingTag = collider->getTag();
     }
+    else if (collider->getTile() && collider->getTag() == "Wall")
+    {
+        collidingTag = collider->getTag();
+    }
 }
 void GameObject::UpdatePhysics(sf::Vector2f* gravity,float deltaTime)
 {

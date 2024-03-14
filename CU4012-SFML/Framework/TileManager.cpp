@@ -63,9 +63,20 @@ void TileManager::handleInput(float dt)
         }
     }
 
-    // Update the color of the tiles based on selection
+    // Update the color of the tiles based on selection and tag
     for (int i = 0; i < tiles.size(); ++i) {
-        tiles[i]->setColor((i == activeTileIndex && tiles[i]->isEditing()) ? sf::Color::Green : sf::Color::Red);
+        // Check if the tile is the active one and is in editing mode
+        if (i == activeTileIndex && tiles[i]->isEditing()) {
+            tiles[i]->setColor(sf::Color::Green);
+        }
+        // Check if the tile's tag is "Walls"
+        else if (tiles[i]->getTag() == "Wall") {
+            tiles[i]->setColor(sf::Color::Blue);
+        }
+        // Default color
+        else {
+            tiles[i]->setColor(sf::Color::Red);
+        }
     }
 
     // Delete the selected tile
@@ -103,10 +114,11 @@ void TileManager::render()
 
 void TileManager::saveTiles(const std::vector<std::unique_ptr<Tiles>>& tiles, const std::string& filePath)
 {
-     std::ofstream file(filePath);
+    std::ofstream file(filePath);
     for (const auto& tile : tiles) {
-        file << tile->getPosition().x << ","
-             << tile->getPosition().y << ","
+        file << tile->getTag() << ","
+            << tile->getPosition().x << ","
+            << tile->getPosition().y << ","
             << tile->getSize().x << ","
             << tile->getSize().y << "\n";
     }
@@ -117,10 +129,10 @@ bool TileManager::loadTiles()
     if (tiles.empty())
     {
         std::ifstream file(filePath);
-        
+
         if (!file.is_open()) {
-			return false;
-		}
+            return false;
+        }
         std::string line;
 
         while (std::getline(file, line)) {
@@ -133,19 +145,20 @@ bool TileManager::loadTiles()
                 seglist.push_back(segment);
             }
 
-            if (seglist.size() >= 4) {
+            if (seglist.size() >= 5) {
                 // Assuming segment order is type, posX, posY, sizeX, sizeY
                 auto newTile = std::make_unique<Tiles>();
                 //tile.setTag(std::stoi(seglist[0])); // Ensure this matches your type representation
-                newTile->setPosition(sf::Vector2f(std::stof(seglist[0]), std::stof(seglist[1])));
-                newTile->setSize(sf::Vector2f(std::stof(seglist[2]), std::stof(seglist[3])));
+                newTile->setTag(seglist[0]);
+                newTile->setPosition(sf::Vector2f(std::stof(seglist[1]), std::stof(seglist[2])));
+                newTile->setSize(sf::Vector2f(std::stof(seglist[3]), std::stof(seglist[4])));
                 world->AddGameObject(*newTile);
                 tiles.push_back(std::move(newTile));
                 //std::cout<<"Tiles: "<<tiles.size()<<std::endl;  
             }
-            
+
         }
-        
+
         return true;
 
     }

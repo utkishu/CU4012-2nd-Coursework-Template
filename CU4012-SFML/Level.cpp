@@ -72,7 +72,7 @@ void Level::handleInput(float dt)
 	{
 		// Handle moving the view or other edit-mode-specific logic
 		moveView(dt);
-		tileManager.handleInput(dt); // tileManager might have its own logic for when editing is true
+		//tileManager.handleInput(dt); // tileManager might have its own logic for when editing is true
 	}
 	else
 	{
@@ -87,15 +87,21 @@ void Level::update(float dt)
 
 	sf::Vector2f viewSize = sf::Vector2f(window->getSize().x, window->getSize().y);
 
-	if(p1.CollisionWithTag("Enemy"))
-	{ 
-		std::cout << "Player collided with enemy\n";
+	if (p1.CollisionWithTag("Enemy"))
+	{
+		std::cout << "Collision with enemy\n";
+	}
+
+	if (e1.CollisionWithTag("Wall"))
+	{
+		std::cout << "Collision with wall\n";
+		e1.setVelocity(-e1.getVelocity());
 	}
 
 	if (editMode)
 	{
 		TileEditorText.setPosition(view.getCenter().x - viewSize.x / 2, view.getCenter().y - viewSize.y / 2);
-		TileEditorText.setString("Editing mode\nPress E to exit and Save");
+		TileEditorText.setString("Editing mode\nPress B to set collider as a wall (allows bouncing) \nPress E to exit and Save");
 		tileManager.handleInput(dt);
 		tileManager.update(dt);
 	}
@@ -118,10 +124,6 @@ void Level::render()
 
 	window->draw(e1);
 	window->draw(e1.getDebugCollisionBox());
-
-
-	//window->draw(ground.getDebugCollisionBox());
-
 
 	tileManager.render();
 	endDraw();

@@ -15,6 +15,7 @@ Enemy::Enemy()
 	setCollisionBox(getPosition(), getSize());
 	setTag("Enemy");
 	setMass(50.f);
+	setTrigger(true);
 
 }
 

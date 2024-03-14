@@ -68,8 +68,6 @@ void Menu::update(float dt)
 	UIText[1].setCollisionBox(sf::FloatRect(windowSize.x / 2 - UIText[1].text.getGlobalBounds().width / 2, 165, 35, 15));
 
 
-
-
 	// Update mouse position
 	MousePos.x = input->getMouseX();
 	MousePos.y = input->getMouseY();

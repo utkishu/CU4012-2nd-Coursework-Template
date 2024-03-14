@@ -13,14 +13,14 @@ Tiles::Tiles()
 
 void Tiles::update(float dt)
 {
-		// Set the collision box to be the same as the sprite
-		updateCollisionBox(dt);	
+	// Set the collision box to be the same as the sprite
+	updateCollisionBox(dt);
 }
 
 void Tiles::handleInput(float dt)
 {
 
-	if(editing)
+	if (editing)
 	{
 		// Move the tile
 		float moveSpeed = 50.0f; // Speed of movement
@@ -59,6 +59,13 @@ void Tiles::handleInput(float dt)
 		if (input->isKeyDown(sf::Keyboard::K))
 		{
 			setSize(sf::Vector2f(getSize().x, getSize().y + resizeSpeed));
+		}
+
+		if (input->isKeyDown(sf::Keyboard::B))
+		{
+			input->setKeyUp(sf::Keyboard::B);
+			setTag("Wall");
+			//std::cout << "Wall\n";
 		}
 	}
 
