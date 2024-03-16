@@ -4,7 +4,7 @@ Enemy::Enemy()
 {
 	health = 100;
 	speed = 150;
-	velocity.x = -1;
+	velocity.x = -speed;
 
 	if (!texture.loadFromFile("gfx/Goomba.png"))
 	{
@@ -15,11 +15,8 @@ Enemy::Enemy()
 	setCollisionBox(getPosition(), getSize());
 	setTag("Enemy");
 	setMass(50.f);
-	setTrigger(true);
-
 }
 
 void Enemy::update(float dt)
 {
-	move(velocity * speed * dt);
 }

@@ -20,7 +20,7 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 	p1.setPosition(100, 100);
 	p1.setInput(input);
 
-	e1.setPosition(500, 100);
+	e1.setPosition(600, 100);
 	world->AddGameObject(p1);
 	world->AddGameObject(e1);
 	//world->AddGameObject(ground);
@@ -89,19 +89,24 @@ void Level::update(float dt)
 
 	if (p1.CollisionWithTag("Enemy"))
 	{
-		std::cout << "Collision with enemy\n";
+		if (p1.getCollisionDirection() == "Down")
+		{
+			std::cout << "Player hit enemy from above\n";
+			e1.setAlive(false);
+			world->RemoveGameObject(e1);
+		}
+
 	}
 
 	if (e1.CollisionWithTag("Wall"))
 	{
-		std::cout << "Collision with wall\n";
-		e1.setVelocity(-e1.getVelocity());
+		e1.setVelocity(-e1.getVelocity().x,e1.getVelocity().y);
 	}
 
 	if (editMode)
 	{
 		TileEditorText.setPosition(view.getCenter().x - viewSize.x / 2, view.getCenter().y - viewSize.y / 2);
-		TileEditorText.setString("Editing mode\nPress B to set collider as a wall (allows bouncing) \nPress E to exit and Save");
+		TileEditorText.setString("Editing mode\nLeft Mouse Button to place tile\nPress B to set collider as a wall (allows bouncing) \nPress E to exit and Save");
 		tileManager.handleInput(dt);
 		tileManager.update(dt);
 	}
@@ -121,9 +126,11 @@ void Level::render()
 	window->draw(p1);
 	window->draw(p1.getDebugCollisionBox());
 
-
-	window->draw(e1);
-	window->draw(e1.getDebugCollisionBox());
+	if (e1.isAlive())
+	{
+		window->draw(e1);
+		window->draw(e1.getDebugCollisionBox());
+	}
 
 	tileManager.render();
 	endDraw();

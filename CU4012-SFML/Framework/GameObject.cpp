@@ -127,20 +127,49 @@ bool GameObject::checkCollision(GameObject* otherBox)
                 if (deltaX > 0.0f) {
                     move(intersectX * (1.0f - push), 0.f);
                     otherBox->move(-intersectX * push, 0.0f);
+
+                    //Collision on the right
+                    if (!otherBox->getStatic())
+                    {
+                        Direction.x = 1.f;
+                        Direction.y = 0.f;
+                    }
                 }
                 else {
                     move(-intersectX * (1.0f - push), 0.0f);
                     otherBox->move(intersectX * push, 0.0f);
+
+                    //Collision on the left
+                    if (!otherBox->getStatic())
+                    {
+                        Direction.x = -1.f;
+                        Direction.y = 0.f;
+                    }
                 }
             }
             else {
                 if (deltaY > 0.0f) {
                     move(0.0f, intersectY * (1.f - push));
                     otherBox->move(0.0f, -intersectY * push);
+
+                    //Collision on the bottom
+                    if (!otherBox->getStatic())
+                    {
+                        Direction.x = 0.f;
+                        Direction.y = 1.f;
+                    }
+                    canJump = true;
                 }
                 else {
                     move(0.0f, -intersectY * (1.0f - push));
                     otherBox->move(0.0f, intersectY * push);
+
+                    //Collision on the top
+                    if (!otherBox->getStatic())
+                    {
+                        Direction.x = 0.f;
+                        Direction.y = -1.f;
+                    }
                 }
             }
 
@@ -175,20 +204,49 @@ bool GameObject::checkCollision(GameObject* otherBox)
                 if (deltaX > 0.0f) {
                     move(intersectX * (1.0f - push), 0.f);
                     otherBox->move(-intersectX * push, 0.0f);
+
+                    //Collision on the right
+                    if (!otherBox->getStatic())
+					{ 
+                        Direction.x = 1.f;
+                        Direction.y = 0.f;
+                    }
                 }
                 else {
                     move(-intersectX * (1.0f - push), 0.0f);
                     otherBox->move(intersectX * push, 0.0f);
+
+                    //Collision on the left
+                    if (!otherBox->getStatic())
+                    {
+                        Direction.x = -1.f;
+                        Direction.y = 0.f;
+                    }
                 }
             }
             else {
                 if (deltaY > 0.0f) {
                     move(0.0f, intersectY * (1.f - push));
                     otherBox->move(0.0f, -intersectY * push);
+
+                    //Collision on the bottom
+                    if (!otherBox->getStatic())
+                    {
+                        Direction.x = 0.f;
+                        Direction.y = 1.f;
+                    }
+                    canJump = true;
                 }
                 else {
                     move(0.0f, -intersectY * (1.0f - push));
                     otherBox->move(0.0f, intersectY * push);
+
+                    //Collision on the top
+                    if (!otherBox->getStatic())
+                    {
+                        Direction.x = 0.f;
+                        Direction.y = -1.f;
+                    }
                 }
             }
             return true;
@@ -220,15 +278,55 @@ void GameObject::collisionResponse(GameObject* collider)
         collidingTag = collider->getTag();
     }
 }
+
+void GameObject::Jump(float jumpHeight)
+{
+    velocity.y = -sqrt(2.0f * 981.0f * jumpHeight);
+    canJump = false;
+}
+
+std::string GameObject::getCollisionDirection()
+{
+    //If the direction is not 0,0
+    if (Direction.x != 0 || Direction.y != 0)
+    {
+		//If the direction is 1,0
+        if (Direction.x == 1)
+        {
+			return "Right";
+		}
+		//If the direction is -1,0
+        if (Direction.x == -1)
+        {
+			return "Left";
+		}
+		//If the direction is 0,1
+        if (Direction.y == 1)
+        {
+			return "Down";
+		}
+		//If the direction is 0,-1
+        if (Direction.y == -1)
+        {
+			return "Up";
+		}
+	}
+	return "None";
+}
+
+
+
 void GameObject::UpdatePhysics(sf::Vector2f* gravity,float deltaTime)
 {
-    if(!isStatic)
-    { 
-        velocity += force * mass * deltaTime;
-        setPosition(getPosition() + velocity * deltaTime);
+    if (!isStatic)
+    {
+        velocity.y += gravity->y * deltaTime;
+
+        // Clamp the gravity so that the object does not fall through the floor also known as tunneling
+        velocity.y = std::min(velocity.y, gravity->y);
         angularVelocity += torque * deltaTime;
         setRotation(getRotation() + angularVelocity * deltaTime);
-        updateCollisionBox(deltaTime);
         move(velocity * deltaTime);
+        updateCollisionBox(deltaTime);
     }
 }

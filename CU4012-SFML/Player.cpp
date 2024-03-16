@@ -5,6 +5,7 @@ Player::Player()
 	health = 100;
 	speed = 200;
 
+
 	if (!texture.loadFromFile("gfx/Mushroom.png"))
 	{
 		std::cout << "File not found\n";
@@ -18,30 +19,27 @@ Player::Player()
 
 void Player::handleInput(float dt)
 {
+	velocity.x = 0.f;
+
+	// Update velocity based on input
 	if (input->isKeyDown(sf::Keyboard::A))
 	{
-		velocity = sf::Vector2f(-1*speed, 0);
+		// Update only the horizontal component, preserving vertical velocity
+		velocity.x = -speed;
 	}
-	else if (input->isKeyDown(sf::Keyboard::D))
+	if (input->isKeyDown(sf::Keyboard::D))
 	{
-		velocity = sf::Vector2f(1*speed, 0);
+		// Update only the horizontal component, preserving vertical velocity
+		velocity.x = speed;
 	}
-	else if(input->isKeyDown(sf::Keyboard::S))
-	{
-		velocity = sf::Vector2f(0, 1*speed);
-	}
-
-	else if (input->isKeyDown(sf::Keyboard::W))
-	{
-		applyImpulse(sf::Vector2f(0, -1*speed));
 	
-	}
-	else
+	if (input->isKeyDown(sf::Keyboard::Space) && canJump )
 	{
-		velocity = sf::Vector2f(0, 0);
+		Jump(200.f);
 	}
 }
 
 void Player::update(float dt)
 {
+
 }
