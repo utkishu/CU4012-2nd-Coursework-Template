@@ -19,6 +19,8 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 	// initialise game objects
 	p1.setPosition(100, 100);
 	p1.setInput(input);
+	p1.setWindow(window);
+	p1.setWorld(world);
 
 	e1.setPosition(600, 100);
 	world->AddGameObject(p1);
@@ -130,6 +132,12 @@ void Level::render()
 	{
 		window->draw(e1);
 		window->draw(e1.getDebugCollisionBox());
+	}
+	auto bullets = p1.getBullets();
+	for (auto& bullet : bullets)
+	{
+		window->draw(*bullet);
+		window->draw(bullet->getDebugCollisionBox());
 	}
 
 	tileManager.render();
