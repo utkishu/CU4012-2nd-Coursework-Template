@@ -64,8 +64,7 @@ For making dynamic objects which move you have to set a mass
 	setTag("Player");
 }
 ```
-## Things to add
- -Trigger collisions boxes: which detects collision but aren't blocking objects
+## Things to add 
  -Improve collision detection from AABB to SAT(more complex)
  
 
