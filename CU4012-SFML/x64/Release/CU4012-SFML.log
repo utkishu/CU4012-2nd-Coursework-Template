@@ -1,7 +1,4 @@
-﻿  Enemy.cpp
-  Generating code
-  3 of 593 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  CU4012-SFML.vcxproj -> C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\CU4012-2nd-Coursework-Template\x64\Release\CU4012-SFML.exe
+﻿Level.obj : error LNK2001: unresolved external symbol "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl GameObject::getCollisionDirection(void)" (?getCollisionDirection@GameObject@@QEAA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ)
+Main.obj : error LNK2001: unresolved external symbol "public: __cdecl World::World(void)" (??0World@@QEAA@XZ)
+Player.obj : error LNK2001: unresolved external symbol "protected: void __cdecl GameObject::Jump(float)" (?Jump@GameObject@@IEAAXM@Z)
+C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\CU4012-2nd-Coursework-Template\x64\Release\CU4012-SFML.exe : fatal error LNK1120: 3 unresolved externals

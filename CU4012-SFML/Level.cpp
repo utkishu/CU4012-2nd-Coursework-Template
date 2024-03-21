@@ -16,6 +16,15 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 
 	TileEditorText.setString(" Press E to edit tiles");
 	TileEditorText.setPosition(0, 0);
+
+
+	//Collectables Collected Text
+	CollectablesCollectedText.setFont(font);
+	CollectablesCollectedText.setCharacterSize(24);
+	CollectablesCollectedText.setFillColor(sf::Color::Black);
+	CollectablesCollectedText.setPosition(window->getSize().x, 0);
+	CollectablesCollectedText.setString("Collected: ");
+
 	// initialise game objects
 	p1.setPosition(100, 100);
 	p1.setInput(input);
@@ -25,9 +34,13 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs, World* w)
 	world->AddGameObject(e1);
 	//world->AddGameObject(ground);
 
+	// Set up tile manager
+	tileManager.setCollectableTexture("gfx/Collectable.png");
+	tileManager.setPlatformTexture("gfx/Platform.png");
 	tileManager.setInput(input);
 	tileManager.setWindow(window);
 	tileManager.setWorld(world);
+	tileManager.ShowDebugCollisionBox(true);
 
 	if (!tileManager.loadTiles())
 	{
@@ -85,7 +98,13 @@ void Level::handleInput(float dt)
 void Level::update(float dt)
 {
 
+
 	sf::Vector2f viewSize = sf::Vector2f(window->getSize().x, window->getSize().y);
+
+	CollectablesCollectedText.setPosition(view.getCenter().x - viewSize.x / 14, view.getCenter().y - viewSize.y / 2);
+	
+	std::cout << p1.getCollisionDirection() << std::endl;
+
 
 	if (p1.CollisionWithTag("Enemy"))
 	{
@@ -95,7 +114,23 @@ void Level::update(float dt)
 			e1.setAlive(false);
 			world->RemoveGameObject(e1);
 		}
+		else
+		{
+			std::cout << "Player hit enemy from the side\n";
+			p1.setPosition(100, 100);
+			gameState->setCurrentState(State::MENU);
+		}
 
+	}
+	if (p1.CollisionWithTag("Collectable"))
+	{
+		// Player is Colliding with Collectable
+		p1.addCollectable(1); // Increment Collectable count
+		tileManager.RemoveCollectable(); // Remove the collectable
+
+		// Update the CollectablesCollectedText to display the new number of rings collected
+		int collectableCount = p1.getCollectablesCount(); // Assume p1 is the player object and has the getCollectablesCount method
+		CollectablesCollectedText.setString("Collected: " + std::to_string(collectableCount));
 	}
 
 	if (e1.CollisionWithTag("Wall"))
@@ -106,13 +141,21 @@ void Level::update(float dt)
 	if (editMode)
 	{
 		TileEditorText.setPosition(view.getCenter().x - viewSize.x / 2, view.getCenter().y - viewSize.y / 2);
-		TileEditorText.setString("Editing mode\nLeft Mouse Button to place tile\nPress B to set collider as a wall (allows bouncing) \nPress E to exit and Save");
+		TileEditorText.setString("Editing mode\nLeft Mouse Button to place tile\nPress B to set collider as a wall (allows bouncing)\n Press C to make it a collectable\n Press P to make it a Platform\nPress E to exit and Save");
 		tileManager.handleInput(dt);
 		tileManager.update(dt);
 	}
 	else
 	{
 		TileEditorText.setString("Press E to edit tiles");
+		
+		//Move the view to follow the player
+		view.setCenter(view.getCenter().x, 360);
+
+		sf::Vector2f playerPosition = p1.getPosition();
+		float newX = std::max(playerPosition.x, view.getSize().x / 2.0f);
+		view.setCenter(newX, view.getCenter().y);
+		window->setView(view);
 	}
 }
 
@@ -132,7 +175,9 @@ void Level::render()
 		window->draw(e1.getDebugCollisionBox());
 	}
 
-	tileManager.render();
+	tileManager.render(editMode);
+	if (editMode) window->draw(TileEditorText);
+	window->draw(CollectablesCollectedText );
 	endDraw();
 }
 

@@ -65,14 +65,20 @@ void Tiles::handleInput(float dt)
 		{
 			input->setKeyUp(sf::Keyboard::B);
 			setTag("Wall");
-			//std::cout << "Wall\n";
+			std::cout << "Tile set as Wall\n";
+		}
+		if (input->isKeyDown(sf::Keyboard::C))
+		{
+			input->setKeyUp(sf::Keyboard::C);
+			setTag("Collectable");
+			std::cout << "Tile set as Collectable\n";
+		}
+
+		if (input->isKeyDown(sf::Keyboard::P))
+		{
+			input->setKeyUp(sf::Keyboard::P);
+			setTag("Platform");
+			std::cout << "Tile set as Platform\n";
 		}
 	}
-
-	//// Check to exit editing mode
-	//if (input->isKeyDown(sf::Keyboard::Return)) {
-	//	editing = false;
-	//	input->setKeyUp(sf::Keyboard::Return); // Acknowledge the key press to prevent sticking
-	//}
-
 }

@@ -36,4 +36,5 @@ private:
 	Enemy e1;	
 	TileManager tileManager;
 
+	sf::Text CollectablesCollectedText;
 };
