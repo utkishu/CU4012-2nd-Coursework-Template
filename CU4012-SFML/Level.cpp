@@ -97,8 +97,6 @@ void Level::handleInput(float dt)
 // Update game objects
 void Level::update(float dt)
 {
-
-
 	sf::Vector2f viewSize = sf::Vector2f(window->getSize().x, window->getSize().y);
 
 	CollectablesCollectedText.setPosition(view.getCenter().x - viewSize.x / 14, view.getCenter().y - viewSize.y / 2);

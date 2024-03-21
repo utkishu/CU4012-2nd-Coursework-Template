@@ -6,7 +6,7 @@ Player::Player()
 	speed = 200;
 
 
-	if (!texture.loadFromFile("gfx/Mushroom.png"))
+	if (!texture.loadFromFile("gfx/mario.png"))
 	{
 		std::cout << "File not found\n";
 	}
@@ -26,11 +26,14 @@ void Player::handleInput(float dt)
 	{
 		// Update only the horizontal component, preserving vertical velocity
 		velocity.x = -speed;
+		//Fix the sprite moving left issue
+		setScale(-1, 1);	
 	}
 	if (input->isKeyDown(sf::Keyboard::D))
 	{
 		// Update only the horizontal component, preserving vertical velocity
 		velocity.x = speed;
+		setScale(1, 1);
 	}
 	
 	if (input->isKeyDown(sf::Keyboard::Space) && canJump )
