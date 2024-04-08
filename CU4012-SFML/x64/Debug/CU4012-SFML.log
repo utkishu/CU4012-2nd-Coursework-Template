@@ -1,2 +1,45 @@
-﻿  GameObject.cpp
-  CU4012-SFML.vcxproj -> C:\Users\raouy\OneDrive\Documents\CU4012-GamesProgramming\Github Reopos\CU4012-2nd-Coursework-Template\x64\Debug\CU4012-SFML.exe
+﻿  Level.cpp
+C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(14,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(14,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(35,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Level.cpp(35,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+  Main.cpp
+C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Main.cpp(11,1): warning C4005: 'WINDOWWIDTH': macro redefinition
+C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Framework\UI.h(5): message : see previous definition of 'WINDOWWIDTH'
+C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Main.cpp(12,1): warning C4005: 'WINDOWHEIGHT': macro redefinition
+C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\CU4012-SFML\Framework\UI.h(6): message : see previous definition of 'WINDOWHEIGHT'
+  Menu.cpp
+  Generating Code...
+  CU4012-SFML.vcxproj -> C:\Users\yadavu\Documents\GitHub\CU4012-2nd-Coursework-Template\x64\Debug\CU4012-SFML.exe

@@ -8,8 +8,7 @@
 #include "Framework/TileManager.h"
 #include <string>
 #include <iostream>
-#include "Player.h"
-#include "Enemy.h"
+
 
 class Level : public BaseLevel{
 public:
@@ -20,21 +19,18 @@ public:
 	void update(float dt) override;
 	void render();
 	void moveView(float dt);
-
+	void EditMode(float dt, sf::Vector2f viewSize);
+	void DrawEditModeText();
+	void InitialiseTileManager();
 	void adjustViewToWindowSize(unsigned int width, unsigned int height);
 private:
-	
+	TileManager tileManager;
 	sf::View view;
 	
 	sf::Text TileEditorText;
 	sf::Font font;
 
 	bool editMode;
-
 	// Default variables for level class.
-	Player p1;
-	Enemy e1;	
-	TileManager tileManager;
 
-	sf::Text CollectablesCollectedText;
 };
